@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DataStorePref</string>
+    <string name="name">Name</string>
+    <string name="female_male">Female/Male</string>
+    <string name="gender">Gender</string>
+    <string name="age">Age</string>
+</resources>
