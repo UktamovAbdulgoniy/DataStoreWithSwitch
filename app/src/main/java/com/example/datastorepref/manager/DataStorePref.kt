@@ -33,7 +33,7 @@ class DataStorePref(
         User(
             name = it[name] ?: "Anonymous",
             age = it[age] ?: "0",
-            gender = (it[gender] ?: "GenderLess") as Boolean
+            gender = it[gender] ?: false
         )
     }
 }

@@ -8,7 +8,6 @@ import com.example.datastorepref.model.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -24,14 +23,13 @@ class MainActivity : AppCompatActivity() {
         binding.btnSave.setOnClickListener {
             val name = binding.editName.text.toString().trim()
             val age = binding.editAge.text.toString().trim()
-            val gender = binding.editGender.text.toString().trim()
 
             GlobalScope.launch(Dispatchers.IO) {
                 dataStorePref.saveUser(
                     user = User(
                         name = name,
                         age = age,
-                        gender = gender.toBoolean()
+                        gender = binding.editGender.isChecked
                     )
                 )
             }
@@ -44,15 +42,10 @@ class MainActivity : AppCompatActivity() {
                     withContext(Dispatchers.Main){
                         binding.textName.text = it.name
                         binding.textAge.text = it.age
-                        if (!it.gender){
-                            binding.textGender.text = "Male"
-                        }else{
-                            binding.textGender.text = "Female"
-                        }
+                        binding.textGender.text = if (it.gender) "Male" else "Female"
                     }
                 }
             }
         }
-
     }
 }
